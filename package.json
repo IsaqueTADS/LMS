@@ -1,0 +1,24 @@
+{
+  "name": "lms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch --no-warnings index.ts",
+    "client": "node --watch --no-warnings client.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaqueTADS/framework.git"
+  },
+  "keywords": [],
+  "author": "IsaqueTADS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaqueTADS/framework/issues"
+  },
+  "homepage": "https://github.com/IsaqueTADS/framework#readme",
+  "devDependencies": {
+    "@types/node": "^24.10.1"
+  }
+}

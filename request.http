@@ -1,0 +1,47 @@
+GET http://localhost:3333/
+
+
+
+
+
+###
+
+
+
+
+POST http://localhost:3333/cursos
+Content-Type: application/json
+
+{
+  "slug": "deploy-aplicacoes-node",
+  "nome": "Deploy de Aplicações Node.js",
+  "descricao": "Aprenda a publicar APIs e sistemas em servidores e serviços cloud."
+}
+
+###
+POST http://localhost:3333/aulas
+Content-Type: application/json
+
+{
+  "slug": "docker-para-desenvolvedores-dockerfile-compose",
+  "nome": "Dockerfile + Docker Compose (setup de projeto)",
+  "cursoSlug": "docker-para-desenvolvedores"
+}
+
+###
+
+GET http://localhost:3333/cursos
+
+###
+
+GET http://localhost:3333/curso?slug=deploy-aplicacoes-node
+
+###
+
+GET http://localhost:3333/aulas?slug_curso=fullstack-node-react
+
+###
+
+GET http://localhost:3333/aula?slug_curso=fullstack-node-react&slug_aula=fullstack-node-react-introducao-stack
+
+

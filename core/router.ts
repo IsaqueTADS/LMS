@@ -7,7 +7,7 @@ type Handler = (
 ) => Promise<void> | void;
 
 export class Router {
-  routes = {
+  routes: Record<string, any> = {
     GET: {},
     POST: {},
     PUT: {},

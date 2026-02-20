@@ -1,6 +1,19 @@
+GET http://localhost:3333/curso/javascript
+
+
+
+
+
+###
+
+GET http://localhost:3333/curso/javascript/pegar
+
+
+
+
+
+###
 GET http://localhost:3333/
-
-
 
 
 

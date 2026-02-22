@@ -9,6 +9,7 @@ import {
 } from "./core/db/database.ts";
 import { bodyJson } from "./core/middleware/body-json.ts";
 import { logger } from "./core/middleware/logger.ts";
+import { RouteError } from "./core/utils/route-error.ts";
 
 const core = new Core();
 
@@ -19,10 +20,9 @@ core.router.get(
   (req, res) => {
     const { slug } = req.params;
 
-    console.log(slug);
-    // const curso = pegarCurso(slug);
+    const curso = pegarCurso(slug);
 
-    // if (!curso) return res.status(404).json({ messagem: "curso não encontrado" });
+    if (!curso) throw new RouteError(404, "curso não encontrado");
 
     res.status(200).json({ slug });
   },

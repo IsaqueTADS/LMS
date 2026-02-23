@@ -80,12 +80,25 @@ export class LmsApi extends Api {
       const { slug } = req.params;
 
       const course = this.query.selectCourse(slug);
+      const lessons = this.query.selectLessons(slug);
 
       if (!course) {
         throw new RouteError(404, "curso não econtrado");
       }
 
-      res.status(200).json(course);
+      res.status(200).json({ course, lessons });
+    },
+
+    getLesson: (req, res) => {
+      const { courseSlug, lessonSlug } = req.params;
+
+      const lesson = this.query.selectLesson(courseSlug, lessonSlug);
+
+      if (!lesson) {
+        throw new RouteError(404, "aula não econtrado");
+      }
+
+      res.status(200).json(lesson);
     },
   } satisfies Api["handlers"];
 
@@ -97,5 +110,9 @@ export class LmsApi extends Api {
     this.router.get("/lms/courses", this.handlers.getCourses);
     this.router.get("/lms/course/:slug", this.handlers.getCourse);
     this.router.post("/lms/lesson", this.handlers.postLesson);
+    this.router.get(
+      "/lms/lesson/:courseSlug/:lessonSlug",
+      this.handlers.getLesson,
+    );
   }
 }

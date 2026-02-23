@@ -13,4 +13,8 @@ GET http://localhost:3333/lms/courses
 
 ###
 
-GET http://localhost:3333/lms/course/nodejs-do-zero-ao-avancado
+GET http://localhost:3333/lms/course/javascript-completo
+
+###
+
+GET http://localhost:3333/lms/lesson/javascript-completo/introducao-e-variaveis

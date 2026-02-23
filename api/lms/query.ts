@@ -92,4 +92,26 @@ export class LmsQuery extends Query {
       )
       .get(slug) as CourseData | undefined;
   }
+
+  selectLessons(slugCourse: string) {
+    return this.db
+      .prepare(
+        /*sql*/ `
+      SELECT * FROM "lessons" WHERE "course_id" = (SELECT "id" FROM "courses" WHERE "slug" = ? ) ORDER BY "order" ASC
+    `,
+      )
+      .all(slugCourse) as LessonData[];
+  }
+
+  selectLesson(slugCourse: string, lessonSlug: string) {
+    return this.db
+      .prepare(
+        /*sql*/ `
+      SELECT * FROM "lessons" 
+      WHERE "course_id" = (SELECT "id" FROM "courses" WHERE "slug" = ? ) 
+      AND "slug" = ?
+    `,
+      )
+      .get(slugCourse, lessonSlug) as LessonData | undefined;
+  }
 }

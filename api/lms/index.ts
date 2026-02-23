@@ -1,20 +1,23 @@
 import { Api } from "../../core/utils/abstract.ts";
 import { RouteError } from "../../core/utils/route-error.ts";
+import { LmsQuery } from "./query.ts";
 import { lmsTables } from "./table.ts";
 
+
+
 export class LmsApi extends Api {
+  query = new LmsQuery(this.db);
   handlers = {
-    postCourses: (req, res) => {
+    postCourse: (req, res) => {
       const { slug, title, description, lessons, hours } = req.body;
 
-      const writeResult = this.db
-        .query(
-          /*sql*/ `
-        INSERT OR IGNORE INTO "courses" ("slug","title","description","lessons","hours")
-        VALUES (?,?,?,?,?)
-      `,
-        )
-        .run(slug, title, description, lessons, hours);
+      const writeResult = this.query.insertCourse({
+        slug,
+        title,
+        description,
+        lessons,
+        hours,
+      });
 
       console.log(writeResult);
 
@@ -28,7 +31,7 @@ export class LmsApi extends Api {
         title: "curso criado",
       });
     },
-    postLessons: (req, res) => {
+    postLesson: (req, res) => {
       const {
         courseSlug,
         slug,
@@ -79,7 +82,7 @@ export class LmsApi extends Api {
     this.db.exec(lmsTables);
   }
   routes(): void {
-    this.router.post("/lms/courses", this.handlers.postCourses);
-    this.router.post("/lms/lessons", this.handlers.postLessons);
+    this.router.post("/lms/course", this.handlers.postCourse);
+    this.router.post("/lms/lesson", this.handlers.postLesson);
   }
 }

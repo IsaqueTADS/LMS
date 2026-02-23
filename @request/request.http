@@ -18,3 +18,13 @@ GET http://localhost:3333/lms/course/javascript-completo
 ###
 
 GET http://localhost:3333/lms/lesson/javascript-completo/fetch-e-async-await
+
+###
+
+POST http://localhost:3333/lms/lesson/complete
+Content-Type: application/json
+
+{
+  "courseId": 1,
+  "lessonId": 1
+}

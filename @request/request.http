@@ -17,4 +17,4 @@ GET http://localhost:3333/lms/course/javascript-completo
 
 ###
 
-GET http://localhost:3333/lms/lesson/javascript-completo/introducao-e-variaveis
+GET http://localhost:3333/lms/lesson/javascript-completo/fetch-e-async-await

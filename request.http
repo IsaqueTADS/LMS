@@ -1,9 +1,18 @@
-POST http://localhost:3333/aulas
+POST http://localhost:3333/lms/courses
 Content-Type: application/json
+###
 
+GET http://localhost:3333/curso/nodejs-fundamentos
 
 
 ###
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
 
-
-GET http://localhost:3333/curso/nodejs-fundamentos
+{
+  "slug": "nodejs-do-zero-ao-avancado",
+  "title": "Node.js do Zero ao Avançado",
+  "description": "Curso completo de Node.js com foco em APIs REST, Fastify, arquitetura e boas práticas.",
+  "lessons": 42,
+  "hours": 18
+}

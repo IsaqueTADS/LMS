@@ -1,0 +1,15 @@
+POST http://localhost:3333/auth/user
+Content-Type: application/json
+
+
+###
+
+POST http://localhost:3333/auth/user
+Content-Type: application/json
+
+{
+  "name": "IsaqueTADS",
+  "username": "isaquetads",
+  "email": "isaquetads@email.com",
+  "password": "12345678"
+}

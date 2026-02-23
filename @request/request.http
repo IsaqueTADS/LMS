@@ -1,0 +1,8 @@
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
+###
+
+GET http://localhost:3333/curso/nodejs-fundamentos
+
+
+###

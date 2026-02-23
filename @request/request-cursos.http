@@ -1,0 +1,52 @@
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
+
+{
+  "slug": "nodejs-do-zero-ao-avancado",
+  "title": "Node.js do Zero ao Avançado",
+  "description": "Curso completo de Node.js com foco em APIs REST, Fastify, arquitetura e boas práticas.",
+  "lessons": 42,
+  "hours": 18
+}
+
+###
+
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
+
+{
+  "slug": "react-native-profissional",
+  "title": "React Native Profissional",
+  "description": "Aprenda a construir aplicativos mobile performáticos com Expo, navegação, estado global e integrações com API.",
+  "lessons": 60,
+  "hours": 25
+}
+
+###
+###
+###
+###
+
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
+
+{
+  "slug": "html-e-css",
+  "title": "HTML e CSS",
+  "description": "Curso de HTML e CSS para Iniciantes",
+  "lessons": 40,
+  "hours": 10
+}
+
+###
+
+POST http://localhost:3333/lms/courses
+Content-Type: application/json
+
+{
+  "slug": "javascript-completo",
+  "title": "JavaScript Completo",
+  "description": "Curso completo de JavaScript",
+  "lessons": 80,
+  "hours": 20
+}

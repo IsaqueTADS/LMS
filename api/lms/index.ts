@@ -3,8 +3,6 @@ import { RouteError } from "../../core/utils/route-error.ts";
 import { LmsQuery } from "./query.ts";
 import { lmsTables } from "./table.ts";
 
-
-
 export class LmsApi extends Api {
   query = new LmsQuery(this.db);
   handlers = {
@@ -31,6 +29,7 @@ export class LmsApi extends Api {
         title: "curso criado",
       });
     },
+
     postLesson: (req, res) => {
       const {
         courseSlug,
@@ -43,26 +42,16 @@ export class LmsApi extends Api {
         free,
       } = req.body;
 
-      const writeResult = this.db
-        .query(
-          /* sql */ `
-      INSERT OR IGNORE INTO "lessons" (
-        "course_id",
-        "slug",
-        "title",
-        "seconds",
-        "video",
-        "description",
-        "order",
-        "free"
-      )
-      VALUES (
-        (SELECT "id" FROM "courses" WHERE "slug" = ?),
-        ?, ?, ?, ?, ?, ?, ?
-      );
-    `,
-        )
-        .run(courseSlug, slug, title, seconds, video, description, order, free);
+      const writeResult = this.query.insertLessons({
+        courseSlug,
+        slug,
+        title,
+        seconds,
+        video,
+        description,
+        order,
+        free,
+      });
 
       console.log(writeResult);
 
@@ -76,6 +65,28 @@ export class LmsApi extends Api {
         title: "aula criado",
       });
     },
+
+    getCourses: (req, res) => {
+      const courses = this.query.selectCourses();
+
+      if (courses.length === 0) {
+        throw new RouteError(404, "nenhum curso econtrado");
+      }
+
+      res.status(200).json(courses);
+    },
+
+    getCourse: (req, res) => {
+      const { slug } = req.params;
+
+      const course = this.query.selectCourse(slug);
+
+      if (!course) {
+        throw new RouteError(404, "curso não econtrado");
+      }
+
+      res.status(200).json(course);
+    },
   } satisfies Api["handlers"];
 
   tables(): void {
@@ -83,6 +94,8 @@ export class LmsApi extends Api {
   }
   routes(): void {
     this.router.post("/lms/course", this.handlers.postCourse);
+    this.router.get("/lms/courses", this.handlers.getCourses);
+    this.router.get("/lms/course/:slug", this.handlers.getCourse);
     this.router.post("/lms/lesson", this.handlers.postLesson);
   }
 }

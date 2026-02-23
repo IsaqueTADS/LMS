@@ -6,3 +6,11 @@ GET http://localhost:3333/curso/nodejs-fundamentos
 
 
 ###
+
+
+GET http://localhost:3333/lms/courses
+
+
+###
+
+GET http://localhost:3333/lms/course/nodejs-do-zero-ao-avancado

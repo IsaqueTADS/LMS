@@ -16,9 +16,14 @@ GET http://localhost:3333/lms/courses
 GET http://localhost:3333/lms/course/javascript-completo
 
 ###
+GET http://localhost:3333/lms/course/nodejs-do-zero-ao-avancado
+
+###
 
 GET http://localhost:3333/lms/lesson/javascript-completo/fetch-e-async-await
 
+###
+GET http://localhost:3333/lms/lesson/nodejs-do-zero-ao-avancado/introducao-ao-nodejs
 ###
 
 POST http://localhost:3333/lms/lesson/complete
@@ -26,5 +31,13 @@ Content-Type: application/json
 
 {
   "courseId": 1,
-  "lessonId": 1
+  "lessonId": 14
+}
+
+### 
+DELETE  http://localhost:3333/lms/course/reset
+Content-Type: application/json
+
+{
+ "courseId": 14
 }

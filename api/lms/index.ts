@@ -127,28 +127,31 @@ export class LmsApi extends Api {
       res.status(200).json({ ...lesson, prev, next, completed });
     },
     completeLesson: (req, res) => {
-      try {
-        const userId = 2;
-        const { courseId, lessonId } = req.body;
+      const userId = 2;
+      const { courseId, lessonId } = req.body;
 
-        const writeResult = this.query.insertLessonCompleted(
-          userId,
-          courseId,
-          lessonId,
-        );
+      const writeResult = this.query.insertLessonCompleted(
+        userId,
+        courseId,
+        lessonId,
+      );
 
-        if (writeResult.changes === 0) {
-          throw new RouteError(400, "erro ao completar aula");
-        }
-
-        res.status(201).json({
-          title: "aula concluida",
-        });
-      } catch (erro) {
-        res.status(400).json({
-          title: "aula não econtrada",
-        });
+      if (writeResult.changes === 0) {
+        throw new RouteError(400, "erro ao completar aula");
       }
+
+      const progress = this.query.selectProgress(userId, courseId);
+      const incompleteLessons = progress.filter((item) => !item.completed);
+
+      console.log(incompleteLessons.length);
+
+      if (progress.length > 0 && incompleteLessons.length === 0) {
+        console.log("GErar certificado");
+      }
+
+      res.status(201).json({
+        title: "aula concluida",
+      });
     },
     resetCourse: (req, res) => {
       const userId = 2;

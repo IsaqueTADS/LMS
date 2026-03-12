@@ -166,4 +166,18 @@ export class LmsQuery extends Query {
       )
       .run(userId, courseId);
   }
+  selectProgress(userId: number, courseId: number) {
+    return this.db
+      .prepare(
+        /*sql*/ `
+      SELECT "l"."id","lc"."completed"
+      FROM "lessons" as "l"
+      LEFT JOIN "lessons_completed" as "lc"
+      ON "l"."id" = "lc"."lesson_id" AND "lc"."user_id" = ?
+      WHERE "l"."course_id" = ?
+
+    `,
+      )
+      .all(userId, courseId) as { id: number; completed: string }[];
+  }
 }

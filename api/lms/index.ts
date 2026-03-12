@@ -147,9 +147,22 @@ export class LmsApi extends Api {
 
       if (progress.length > 0 && incompleteLessons.length === 0) {
         console.log("GErar certificado");
+        const certificate = this.query.insertCertificate(userId, courseId);
+
+        if(!certificate) {
+           throw new RouteError(400, "erro ao gerar certificado");
+        }
+
+        res.status(201).json({
+          certificate: certificate.id,
+          title: "aula concluida",
+        });
+
+        return;
       }
 
       res.status(201).json({
+        certificate: null,
         title: "aula concluida",
       });
     },

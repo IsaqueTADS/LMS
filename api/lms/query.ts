@@ -180,4 +180,16 @@ export class LmsQuery extends Query {
       )
       .all(userId, courseId) as { id: number; completed: string }[];
   }
+  insertCertificate(userId: number, courseId: number) {
+    return this.db
+      .prepare(
+        /*sql*/ `
+      INSERT OR IGNORE INTO "certificates"
+      ("user_id", "course_id") VALUES
+      (?,?)
+      RETURNING "id"
+    `,
+      )
+      .get(userId, courseId) as { id: string } | undefined;
+  }
 }

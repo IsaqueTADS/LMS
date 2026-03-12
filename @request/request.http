@@ -41,3 +41,10 @@ Content-Type: application/json
 {
  "courseId": 4
 }
+
+###
+
+GET http://localhost:3333/lms/certificates
+###
+
+GET http://localhost:3333/lms/certificate/4c940bd80992c4a8
